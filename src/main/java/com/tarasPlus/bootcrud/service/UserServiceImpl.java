@@ -82,7 +82,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean notNullDataUser(User user) {
-        return true;
+        return user.getUsername() != null && !user.getUsername().isEmpty() &&
+                user.getPassword() != null && !user.getPassword().isEmpty() &&
+                user.getEmail() != null && !user.getEmail().isEmpty() &&
     }
 
     private void passwordEncode(User user) {
