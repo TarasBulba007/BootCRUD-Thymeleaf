@@ -1,24 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <title>My First CRUD Application</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/admin.css">
 </head>
-
 <body>
+<div th:include="fragments/header"></div>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-lg-4 left-menu">
+                <div th:include="fragments/left-menu"></div>
+            </div>
+            <div class="col-md-8 col-lg-8 content">
+                <div>
+                    <h2>Access denied!</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: Green">
-
-        <a class="navbar-brand"> CRUD App </a>
-        <th:block th:include="menu"></th:block>
-
-
-    </nav>
-</header>
-
-<br>
-
-ACCESS DENIED!!!
 </body>
 </html>

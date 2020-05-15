@@ -33,16 +33,16 @@ public class UserController {
         return "userPage";
     }
 
-    @PostMapping("/upgrade/user")
-    public String upgrade(@ModelAttribute("user") User user, Model model) {
-        System.out.println("Update username: " + user.getUsername() + " Birthdate: " + user.getBirth_date());
-        if (service.updateUser(user)) {
-            return "redirect:/user";
-        } else {
-            model.addAttribute("message", environment.getRequiredProperty("invalidData"));
-        }
-        return "redirect:/user";
-    }
+//    @PostMapping("/upgrade/user")
+//    public String upgrade(@ModelAttribute("user") User user, Model model) {
+//        System.out.println("Update username: " + user.getUsername() + " Birthdate: " + user.getBirth_date());
+//        if (service.updateUser(user)) {
+//            return "redirect:/user";
+//        } else {
+//            model.addAttribute("message", environment.getRequiredProperty("invalidData"));
+//        }
+//        return "redirect:/user";
+//    }
 
     @GetMapping("/access_denied")
     public String accessDenied() {

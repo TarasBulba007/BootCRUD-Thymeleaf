@@ -3,61 +3,101 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> User Info Page</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/admin.css">
 </head>
 
 <body>
+<div th:include="fragments/header"></div>
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 col-lg-4 left-menu">
+                <div th:include="fragments/left-menu"></div>
+            </div>
+            <div class="col-md-8 col-lg-8 content">
+                <div>
+                    <h2>User-information page</h2>
+                </div>
+                <br>
+                <div class="tab-content">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Role</th>
+                                <th>Login</th>
+                                <th>Password</th>
+                                <th>Email</th>
+                                <th>PhoneNumber</th>
+                                <th>BirthDate</th>
+                            </tr>
+                            </thead>
+                            <tr th:id="'user-' + ${user.getId()}">
+                                <td hidden="hidden" th:text="${user.enabled}"></td>
+                                <td hidden="hidden" th:text="${user.accountNonExpired}"></td>
+                                <td hidden="hidden" th:text="${user.accountNonLocked}"></td>
+                                <td hidden="hidden" th:text="${user.credentialsNonExpired}"></td>
+                                <td th:text="${user.id}"></td>
+                                <td>
+                                    <th:block th:each="role : ${user.roles}">
+                                        <span th:text="${role.role}"></span>
+                                    </th:block>
+                                </td>
+                                <td th:text="${user.username}"></td>
+                                <td th:text="'*****'"></td>
+                                <td th:text="${user.email}"></td>
+                                <td th:text="${user.phone_number}"></td>
+                                <td th:text="${user.birth_date}"></td>
+                        </table>
+                    </div>
+                </div>
 
-<header>
-    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: Green">
-        <div>
-            <a class="navbar-brand"> CRUD App </a>
-        </div>
-        <a class="navbar-brand"> User Info Page </a>
-        <th:block th:include="menu"></th:block>
+                <!--                <div class="container col-md-8 col-sm-7 cols-lg-8">-->
+                <!--                    <div class="card">-->
+                <!--                        <div class="card-body">-->
+                <!--                            &lt;!&ndash;/*@thymesVar id="user" type="com.tarasPlus.bootcrud.model.User"*/&ndash;&gt;-->
+                <!--                            <form action="#" th:action="@{/upgrade/user}"-->
+                <!--                                  th:object="${user}" method="post">-->
 
-    </nav>
-</header>
-<br>
-<div class="container col-md-5">
-    <div class="card">
-        <div class="card-body">
-            <!--/*@thymesVar id="user" type="com.tarasPlus.bootcrud.model.User"*/-->
-            <form action="#" th:action="@{/upgrade/user}"
-                  th:object="${user}" method="post">
 
-                <th:if test="${user != null}">
-                    <input type="hidden" name="id" th:value="${user.id}" />
-                </th:if>
+                <!--                                <th:if test="${user != null}">-->
+                <!--                                    <input type="hidden" name="id" th:value="${user.id}" />-->
+                <!--                                </th:if>-->
 
-                <fieldset class="form-group">
-                    <label>User Login</label> <input type="text" th:value="${user.username}" class="form-control" name="username">
-                </fieldset>
+                <!--                                <fieldset class="form-group">-->
+                <!--                                    <label>User Login</label> <input type="text" th:value="${user.username}" class="form-control" name="username">-->
+                <!--                                </fieldset>-->
 
-                <fieldset class="form-group">
-                    <label>User Password</label> <input type="text" th:value="${user.password}" class="form-control" name="password">
-                </fieldset>
+                <!--                                <fieldset class="form-group">-->
+                <!--                                    <label>User Password</label> <input type="text" th:value="${user.password}" class="form-control" name="password">-->
+                <!--                                </fieldset>-->
 
-                <fieldset class="form-group">
-                    <label>User Email</label> <input type="text" th:value="${user.email}" class="form-control" name="email">
-                </fieldset>
+                <!--                                <fieldset class="form-group">-->
+                <!--                                    <label>User Email</label> <input type="text" th:value="${user.email}" class="form-control" name="email">-->
+                <!--                                </fieldset>-->
 
-                <fieldset class="form-group">
-                    <label>User PhoneNumber</label> <input type="text" th:value="${user.phone_number}" class="form-control" name="phone_number">
-                </fieldset>
+                <!--                                <fieldset class="form-group">-->
+                <!--                                    <label>User PhoneNumber</label> <input type="text" th:value="${user.phone_number}" class="form-control" name="phone_number">-->
+                <!--                                </fieldset>-->
 
-                <fieldset class="form-group">
-                    <label>User BirthDate</label> <input type="date" th:value="${user.birth_date}" class="form-control" name="birth_date">
-                </fieldset>
+                <!--                                <fieldset class="form-group">-->
+                <!--                                    <label>User BirthDate</label> <input type="date" th:value="${user.birth_date}" class="form-control" name="birth_date">-->
+                <!--                                </fieldset>-->
 
-                <button type="submit" class="btn btn-success">Upgrade</button>
-            </form>
+                <!--                                <button type="submit" class="btn btn-success">Upgrade</button>-->
+                <!--                            </form>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+            </div>
         </div>
     </div>
-</div>
+</section>
 </body>
 
 </html>

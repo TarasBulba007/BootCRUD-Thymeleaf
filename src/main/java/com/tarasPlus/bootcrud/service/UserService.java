@@ -1,8 +1,10 @@
 package com.tarasPlus.bootcrud.service;
 
+import com.tarasPlus.bootcrud.model.Role;
 import com.tarasPlus.bootcrud.model.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
 
@@ -12,7 +14,7 @@ public interface UserService {
 
     void deleteUser(User user);
 
-    boolean updateUser (User user);
+    boolean updateUser (User user, Set<Role> roles);
 
     boolean addUser(User user);
 
@@ -21,4 +23,6 @@ public interface UserService {
     boolean isExistLogin(String login);
 
     boolean notNullDataUser(User user);
+
+    List<Role> findAll();
 }

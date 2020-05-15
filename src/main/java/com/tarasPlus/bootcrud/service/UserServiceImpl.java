@@ -5,11 +5,12 @@ import com.tarasPlus.bootcrud.dao.UserDao;
 import com.tarasPlus.bootcrud.model.Role;
 import com.tarasPlus.bootcrud.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,10 +19,10 @@ public class UserServiceImpl implements UserService {
     private Role adminRole;
     private UserDao userDao;
     private RoleDao roleDao;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserDao userDao, RoleDao roleDao, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserDao userDao, RoleDao roleDao, PasswordEncoder bCryptPasswordEncoder) {
         this.userDao = userDao;
         this.roleDao = roleDao;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
@@ -43,8 +44,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean updateUser(User user) {
+    public boolean updateUser(User user, Set<Role> roles) {
         if (notNullDataUser(user)) {
+            user.setRoles(roles);
             passwordEncode(user);
             userDao.saveAndFlush(user);
             return true;
@@ -115,4 +117,10 @@ public class UserServiceImpl implements UserService {
         }
         user.getRoles().add(adminRole);
     }
+
+    public List<Role> findAll(){
+        return roleDao.findAll();
+    }
+
+
 }
