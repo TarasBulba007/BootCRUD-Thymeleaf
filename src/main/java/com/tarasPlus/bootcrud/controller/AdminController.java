@@ -82,10 +82,4 @@ public class AdminController {
         }
         return "redirect:/admin";
     }
-
-    @GetMapping("/all-roles")
-    public @ResponseBody
-    Set<Role> userRoles() {
-        return ((Set<Role>) service.findAll());
-    }
 }

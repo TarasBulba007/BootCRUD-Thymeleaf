@@ -28,7 +28,7 @@ $("#user-edit-modal").on('show.bs.modal', function(e) {
     $('#birth_date-for-edit').val(bDate);
 
     printRoles(roles.split(' '));
-}); 
+});
 
 function printRoles(arr) {
     $.getJSON("/admin/all-roles", {
@@ -37,7 +37,7 @@ function printRoles(arr) {
         let select = document.getElementById('roles-for-edit');
         const len = data.length;
         for (let i = 0; i < len; i++) {
-            select[i] = new Option(data[i].displayName, data[i].id, false, arr.includes(data[i].displayName, 0));
+            select[i] = new Option(data[i].role, data[i].id, false, arr.includes(data[i].role, 0));
         }
     });
 }
